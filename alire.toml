@@ -1,15 +1,20 @@
-description = "Drivers and HAL for the Nordic nRF5X micro-controller family"
 name = "nrf5x_hal"
-version = "0.1.0"
-licenses = ["BSD 3-Clauses"]
-website="https://github.com/AdaCore/Ada_Drivers_Library/"
-maintainers = ["chouteau@adacore.com"]
-maintainers-logins = ["Fabien-Chouteau"]
-project-files = ["nrf51.gpr", "nrf52.gpr"]
-tags = ["embedded", "nostd", "nrf51", "nrf52", "nordic", "drivers", "ble"]
+description = "Drivers and HAL for the Nordic nRF5X micro-controller family"
+version = "0.2.0"
 
-auto-gpr-with=false # User has to select only one project file
+authors = ["Fabien Chouteau", "Jeremy Grosser"]
+maintainers = ["Fabien Chouteau <chouteau@adacore.com>", "Jeremy Grosser <jeremy@synack.me>"]
+maintainers-logins = ["Fabien-Chouteau", "JeremyGrosser"]
+
+licenses = "BSD-3-Clause"
+tags = ["embedded", "nostd", "nrf51", "nrf52", "nordic", "drivers", "ble"]
+website = "https://github.com/AdaCore/Ada_Drivers_Library"
 
 [[depends-on]]
-cortex_m = "^0.2.0"
-hal = "^0.1.0"
+cortex_m = "~0.5.0"
+
+[configuration.variables]
+Device = {type = "Enum", values = ["nrf51", "nrf52"], default = "nrf51"}
+
+[configuration.values]
+cortex_m.core = "m0"

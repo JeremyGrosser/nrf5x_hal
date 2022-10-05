@@ -1,0 +1,44 @@
+with "config/nrf5x_hal_config.gpr";
+project Nrf5x_Hal is
+
+   for Target use "arm-eabi";
+   for Runtime ("Ada") use "light-cortex-m0";
+
+   for Library_Name use "Nrf5x_Hal";
+   for Library_Version use Project'Library_Name & ".so." & Nrf5x_Hal_Config.Crate_Version;
+
+   for Languages use ("Asm_Cpp", "Ada");
+
+   Linker_Switches := ("-T", Project'Project_Dir & "/src/link.ld");
+
+   for Source_Dirs use (
+      "src/drivers/nrf_common",
+      "config/",
+      "src",
+      "src/svd/" & Nrf5x_Hal_Config.Device,
+      "src/drivers/" & Nrf5x_Hal_Config.Device,
+      "src/devices/" & Nrf5x_Hal_Config.Device
+   );
+
+   for Object_Dir use "obj/" & Nrf5x_Hal_Config.Build_Profile;
+   for Create_Missing_Dirs use "True";
+   for Library_Dir use "lib";
+
+   type Library_Type_Type is ("relocatable", "static", "static-pic");
+   Library_Type : Library_Type_Type :=
+     external ("NRF5X_HAL_LIBRARY_TYPE", external ("LIBRARY_TYPE", "static"));
+   for Library_Kind use Library_Type;
+
+   package Compiler is
+      for Default_Switches ("Ada") use Nrf5x_Hal_Config.Ada_Compiler_Switches;
+   end Compiler;
+
+   package Binder is
+      for Switches ("Ada") use ("-Es"); --  Symbolic traceback
+   end Binder;
+
+   package Install is
+      for Artifacts (".") use ("share");
+   end Install;
+
+end Nrf5x_Hal;

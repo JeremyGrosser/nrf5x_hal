@@ -1,0 +1,15 @@
+name = "tests"
+description = "Shiny new project"
+version = "0.1.0-dev"
+
+authors = ["Jeremy Grosser"]
+maintainers = ["Jeremy Grosser <jeremy@synack.me>"]
+maintainers-logins = ["JeremyGrosser"]
+
+executables = ["tests"]
+
+[[depends-on]]
+nrf5x_hal = "~0.1.0"
+
+[[pins]]
+nrf5x_hal = { path='..' }
