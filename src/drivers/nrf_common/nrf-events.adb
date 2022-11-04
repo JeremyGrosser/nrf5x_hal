@@ -121,5 +121,4 @@ package body nRF.Events is
       return To_UInt32 (System.Address (Evt));
    end Get_Address;
 
-
 end nRF.Events;

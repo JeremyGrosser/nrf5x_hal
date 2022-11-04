@@ -106,7 +106,6 @@ package nRF.Timers is
    --  given channel.
    --  Stop : stop the timer when compare envet N is triggered for given channel
 
-
    -----------------------
    -- Capture / Compare --
    -----------------------
@@ -115,7 +114,6 @@ package nRF.Timers is
                           Chan    : Timer_Channel;
                           Compare : UInt32);
    --  Set compare/capture register of given channel
-
 
    procedure Capture (This : in out Timer;
                       Chan : Timer_Channel);

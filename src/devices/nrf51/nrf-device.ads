@@ -79,7 +79,6 @@ package nRF.Device is
    RTC_0 : aliased Real_Time_Counter (NRF_SVD.RTC.RTC0_Periph'Access);
    RTC_1 : aliased Real_Time_Counter (NRF_SVD.RTC.RTC1_Periph'Access);
 
-
    --  Be carefull of shared resources between the TWI and SPI controllers.
    --  TWI_O and SPI_Master_0 cannot be used at the same time.
    --  TWI_1 and SPI_Master_1 cannot be used at the same time.
@@ -92,11 +91,9 @@ package nRF.Device is
    SPI_Master_0 : aliased nRF.SPI_Master.SPI_Master (NRF_SVD.SPI.SPI0_Periph'Access);
    SPI_Master_1 : aliased nRF.SPI_Master.SPI_Master (NRF_SVD.SPI.SPI1_Periph'Access);
 
-
    Timer_0 : aliased Timer (NRF_SVD.TIMER.TIMER0_Periph'Access);
    Timer_1 : aliased Timer (NRF_SVD.TIMER.TIMER1_Periph'Access);
    Timer_2 : aliased Timer (NRF_SVD.TIMER.TIMER2_Periph'Access);
-
 
    UART_0 : aliased UART_Device (NRF_SVD.UART.UART0_Periph'Access);
 end nRF.Device;

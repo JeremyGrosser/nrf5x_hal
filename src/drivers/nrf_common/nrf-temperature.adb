@@ -63,4 +63,3 @@ package body nRF.Temperature is
    end Read;
 
 end nRF.Temperature;
-

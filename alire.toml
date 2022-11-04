@@ -12,6 +12,7 @@ website = "https://github.com/AdaCore/Ada_Drivers_Library"
 
 [[depends-on]]
 cortex_m = "~0.5.0"
+gnat_arm_elf = "^12"
 
 [configuration.variables]
 Device = {type = "Enum", values = ["nrf51", "nrf52"], default = "nrf51"}

@@ -71,4 +71,3 @@ package body nRF.RNG is
    end Read;
 
 end nRF.RNG;
-

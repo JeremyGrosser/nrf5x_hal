@@ -60,7 +60,6 @@ package body nRF.Timers is
       This.Periph.TASKS_CLEAR := 1;
    end Clear;
 
-
    -------------------
    -- Set_Prescaler --
    -------------------
@@ -261,4 +260,3 @@ package body nRF.Timers is
    is (Event_Type (This.Periph.EVENTS_COMPARE (Integer (Chan))'Address));
 
 end nRF.Timers;
-

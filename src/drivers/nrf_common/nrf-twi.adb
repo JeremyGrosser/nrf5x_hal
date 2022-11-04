@@ -176,7 +176,6 @@ package body nRF.TWI is
       Status := Ok;
    end Master_Transmit;
 
-
    --------------------
    -- Master_Receive --
    --------------------
@@ -200,7 +199,6 @@ package body nRF.TWI is
 
       --  Set Address
       This.Periph.ADDRESS.ADDRESS := UInt7 (Addr / 2);
-
 
       if Data'Length = 1 then
          --  Only one byte to receive so we stop at the next one
@@ -281,7 +279,6 @@ package body nRF.TWI is
                                   Status  => Status,
                                   Timeout => Timeout);
       end case;
-
 
       This.Do_Stop_Sequence := True;
 
