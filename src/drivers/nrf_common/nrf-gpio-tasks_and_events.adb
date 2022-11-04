@@ -77,7 +77,8 @@ package body nRF.GPIO.Tasks_And_Events is
 
    procedure Disable_Channel_Interrupt (Chan : GPIOTE_Channel)
    is
-      INTENCLR : INTENCLR_Register renames GPIOTE_Periph.INTENCLR;
+      INTENCLR : INTENCLR_Register renames GPIOTE_Periph.INTENCLR
+         with Unreferenced;
    begin
       INTENCLR.IN_k.Arr (Integer (Chan)) := Clear;
    end Disable_Channel_Interrupt;
@@ -88,7 +89,8 @@ package body nRF.GPIO.Tasks_And_Events is
 
    procedure Disable_Port_Interrupt
    is
-      INTENCLR : INTENCLR_Register renames GPIOTE_Periph.INTENCLR;
+      INTENCLR : INTENCLR_Register renames GPIOTE_Periph.INTENCLR
+         with Unreferenced;
    begin
       INTENCLR.PORT := Clear;
    end Disable_Port_Interrupt;
@@ -99,7 +101,8 @@ package body nRF.GPIO.Tasks_And_Events is
 
    procedure Enable_Channel_Interrupt (Chan : GPIOTE_Channel)
    is
-      INTENSET : INTENSET_Register renames GPIOTE_Periph.INTENSET;
+      INTENSET : INTENSET_Register renames GPIOTE_Periph.INTENSET
+         with Unreferenced;
    begin
       INTENSET.IN_k.Arr (Integer (Chan)) := Set;
    end Enable_Channel_Interrupt;
@@ -113,7 +116,8 @@ package body nRF.GPIO.Tasks_And_Events is
       GPIO_Pin : GPIO_Pin_Index;
       Polarity : Event_Polarity)
    is
-      CONFIG : CONFIG_Register renames GPIOTE_Periph.CONFIG (Integer (Chan));
+      CONFIG : CONFIG_Register renames GPIOTE_Periph.CONFIG (Integer (Chan))
+         with Unreferenced;
    begin
       CONFIG.PSEL := UInt5 (GPIO_Pin);
       CONFIG.POLARITY := (case Polarity is
@@ -129,7 +133,8 @@ package body nRF.GPIO.Tasks_And_Events is
 
    procedure Enable_Port_Interrupt
    is
-      INTENSET : INTENSET_Register renames GPIOTE_Periph.INTENSET;
+      INTENSET : INTENSET_Register renames GPIOTE_Periph.INTENSET
+         with Unreferenced;
    begin
       INTENSET.PORT := Set;
    end Enable_Port_Interrupt;
@@ -144,7 +149,8 @@ package body nRF.GPIO.Tasks_And_Events is
       Action        : Task_Action;
       Initial_Value : Init_Value)
    is
-      CONFIG : CONFIG_Register renames GPIOTE_Periph.CONFIG (Integer (Chan));
+      CONFIG : CONFIG_Register renames GPIOTE_Periph.CONFIG (Integer (Chan))
+         with Unreferenced;
    begin
       CONFIG.PSEL := UInt5 (GPIO_Pin);
       CONFIG.POLARITY := (case Action is

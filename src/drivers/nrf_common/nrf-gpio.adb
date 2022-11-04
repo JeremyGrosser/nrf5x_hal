@@ -51,7 +51,8 @@ package body nRF.GPIO is
    procedure Set_Mode (This : in out GPIO_Point;
                        Mode : HAL.GPIO.GPIO_Config_Mode)
    is
-      CNF : PIN_CNF_Register renames GPIO_Periph.PIN_CNF (This.Pin);
+      CNF : PIN_CNF_Register renames GPIO_Periph.PIN_CNF (This.Pin)
+         with Unreferenced;
    begin
       CNF.DIR := (case Mode is
                      when HAL.GPIO.Input  => Input,
@@ -151,7 +152,8 @@ package body nRF.GPIO is
      (This   : GPIO_Point;
       Config : GPIO_Configuration)
    is
-      CNF : PIN_CNF_Register renames GPIO_Periph.PIN_CNF (This.Pin);
+      CNF : PIN_CNF_Register renames GPIO_Periph.PIN_CNF (This.Pin)
+         with Unreferenced;
    begin
       CNF.DIR := (case Config.Mode is
                      when Mode_In  => Input,
