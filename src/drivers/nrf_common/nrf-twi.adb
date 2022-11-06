@@ -134,6 +134,9 @@ package body nRF.TWI is
       --  Set Address
       This.Periph.ADDRESS.ADDRESS := UInt7 (Addr / 2);
 
+      This.Periph.SHORTS.BB_SUSPEND := Disabled;
+      This.Periph.SHORTS.BB_STOP := Disabled;
+
       --  Prepare first byte
       This.Periph.TXD.TXD := Data (Data'First);
 
@@ -264,33 +267,27 @@ package body nRF.TWI is
    is
    begin
 
-      This.Do_Stop_Sequence := False;
+      This.Do_Stop_Sequence := True;
 
       case Mem_Addr_Size is
          when Memory_Size_8b =>
             This.Master_Transmit (Addr    => Addr,
-                                  Data    => (0 => UInt8 (Mem_Addr)),
+                                  Data    => (0 => UInt8 (Mem_Addr)) & Data,
                                   Status  => Status,
                                   Timeout => Timeout);
          when Memory_Size_16b =>
             This.Master_Transmit (Addr    => Addr,
                                   Data    => (UInt8 (Shift_Right (Mem_Addr, 8)),
-                                              UInt8 (Mem_Addr and 16#FF#)),
+                                              UInt8 (Mem_Addr and 16#FF#)) & Data,
                                   Status  => Status,
                                   Timeout => Timeout);
       end case;
-
-      This.Do_Stop_Sequence := True;
 
       if Status /= Ok then
          This.Stop_Sequence;
          return;
       end if;
 
-      This.Master_Transmit (Addr    => Addr,
-                            Data    => Data,
-                            Status  => Status,
-                            Timeout => Timeout);
    end Mem_Write;
 
    --------------
